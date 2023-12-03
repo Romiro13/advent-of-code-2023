@@ -1,4 +1,10 @@
-fn find_numbers(input: String) -> String {
+#[derive(PartialEq)]
+pub enum Puzzle {
+  Part01,
+  Part02,
+}
+
+fn find_numbers(input: &str, puzzle: &Puzzle) -> String {
   let text_digits = vec![
     ("one", "1"),
     ("two", "2"),
@@ -14,12 +20,14 @@ fn find_numbers(input: String) -> String {
   let mut numbers: Vec<(usize, &str)> = vec![];
 
   for (text, digit) in text_digits {
-    let numbers_words: Vec<(usize, &str)> = input.match_indices(text).collect();
     let mut digits_numbers: Vec<(usize, &str)> = input.match_indices(digit).collect();
 
-    if !numbers_words.is_empty() {
-      let mut word_to_digit = numbers_words.iter().map(|v| (v.0, digit)).collect();
-      digits_numbers.append(&mut word_to_digit);
+    if puzzle.eq(&Puzzle::Part02) {
+      let numbers_words: Vec<(usize, &str)> = input.match_indices(text).collect();
+      if !numbers_words.is_empty() {
+        let mut word_to_digit = numbers_words.iter().map(|v| (v.0, digit)).collect();
+        digits_numbers.append(&mut word_to_digit);
+      }
     }
 
     numbers.append(&mut digits_numbers);
@@ -32,8 +40,8 @@ fn find_numbers(input: String) -> String {
   numbers.concat()
 }
 
-fn get_first_and_last_number(input: &str) -> i32 {
-  let numbers = find_numbers(input.to_string());
+fn get_first_and_last_number(input: &str, puzzle: &Puzzle) -> i32 {
+  let numbers = find_numbers(input, puzzle);
 
   let number = format!(
     "{}{}",
@@ -50,10 +58,10 @@ fn get_first_and_last_number(input: &str) -> i32 {
     .unwrap_or_else(|_| panic!("Unable to convert '{}' to 'i32'", number))
 }
 
-pub fn get_sum_calibration_value(input: String) -> i32 {
+pub fn get_sum_calibration_value(input: &str, puzzle: &Puzzle) -> i32 {
   let lines = input.split('\n');
   let numbers: Vec<i32> = lines
-    .map(|line| get_first_and_last_number(line.trim()))
+    .map(move |line| get_first_and_last_number(line.trim(), puzzle))
     .collect();
   numbers.iter().sum()
 }
@@ -72,7 +80,7 @@ mod tests {
     let fx_expect = 142;
 
     //Exec
-    let rs = get_sum_calibration_value(fx_input.to_string());
+    let rs = get_sum_calibration_value(fx_input, &Puzzle::Part01);
 
     //Check
     assert_eq!(fx_expect, rs);
@@ -91,7 +99,7 @@ mod tests {
     let fx_expect = 281;
 
     //Exec
-    let rs = get_sum_calibration_value(fx_input.to_string());
+    let rs = get_sum_calibration_value(fx_input, &Puzzle::Part02);
 
     //Check
     assert_eq!(fx_expect, rs);
