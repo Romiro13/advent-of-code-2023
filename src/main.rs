@@ -12,5 +12,9 @@ fn main() -> anyhow::Result<()> {
   let rs = day_01::get_sum_calibration_value(&input, &day_01::Puzzle::Part02);
   println!("Day 01 Part02 result is {}", rs);
 
+  let input = fs::read_to_string("inputs/input_day02.txt")?;
+  let rs = day_02::sum_ids_of_game(&input);
+  println!("Day 02 Part01 result is {}", rs);
+
   Ok(())
 }
