@@ -1,8 +1,4 @@
-#[derive(PartialEq)]
-pub enum Puzzle {
-  Part01,
-  Part02,
-}
+use crate::Puzzle;
 
 fn find_numbers(input: &str, puzzle: &Puzzle) -> String {
   let text_digits = vec![
