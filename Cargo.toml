@@ -12,4 +12,5 @@ repository = "https://github.com/Romiro13/Adventofcode-2023"
 
 [dependencies]
 lazy-regex = "3"
+itertools = "0.12.0"
 anyhow = "1"

@@ -10,14 +10,14 @@ fn get_cubes(input: &str) -> (i32, Vec<Vec<(i32, &str)>>) {
 
   let cubes = cubes
     .map(|cube| {
-      let color_and_count = cube.iter().copied().map(|item| {
+      let color_and_amount = cube.iter().copied().map(|item| {
         let vec = item.split(' ').collect::<Vec<_>>();
-        let count = vec[0].parse::<i32>().unwrap();
+        let amount = vec[0].parse::<i32>().unwrap();
         let color = vec[1];
-        (count, color)
+        (amount, color)
       });
 
-      color_and_count.collect::<Vec<_>>()
+      color_and_amount.collect::<Vec<_>>()
     })
     .collect::<Vec<_>>();
 
@@ -28,10 +28,10 @@ fn get_valid_game_id(input: &str) -> i32 {
   let (game_id, cubes) = get_cubes(input);
 
   for cube in cubes {
-    for (count, color) in cube {
-      if (count > 12 && color == "red")
-        || (count > 13 && color == "green")
-        || (count > 14 && color == "blue")
+    for (amount, color) in cube {
+      if (amount > 12 && color == "red")
+        || (amount > 13 && color == "green")
+        || (amount > 14 && color == "blue")
       {
         return 0; // does not satisfy the game
       }
@@ -49,11 +49,11 @@ fn get_power_of_sets(input: &str) -> i32 {
   let mut greens: Vec<i32> = vec![];
 
   for cube in cubes {
-    for (count, color) in cube {
+    for (amount, color) in cube {
       match color {
-        "red" => reds.push(count),
-        "green" => greens.push(count),
-        "blue" => blues.push(count),
+        "red" => reds.push(amount),
+        "green" => greens.push(amount),
+        "blue" => blues.push(amount),
         _ => (),
       }
     }
