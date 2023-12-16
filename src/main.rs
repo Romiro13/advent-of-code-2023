@@ -3,6 +3,7 @@ use std::fs;
 mod day_01;
 mod day_02;
 mod day_03;
+mod day_04;
 
 #[derive(PartialEq)]
 pub enum Puzzle {
@@ -32,6 +33,13 @@ fn main() -> anyhow::Result<()> {
 
   let rs = day_03::play(&input, &Puzzle::Part02);
   println!("Day 03 Part02 result is {}", rs);
+
+  let input = fs::read_to_string("inputs/input_day04.txt")?;
+  let rs = day_04::play(&input, &Puzzle::Part01);
+  println!("Day 04 Part01 result is {}", rs);
+
+  // let rs = day_04::play(&input, &Puzzle::Part02);
+  // println!("Day 04 Part02 result is {}", rs);
 
   Ok(())
 }
