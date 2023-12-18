@@ -13,7 +13,7 @@ fn find_numbers(input: &str, puzzle: &Puzzle) -> String {
     ("nine", "9"),
   ];
 
-  let mut numbers: Vec<(usize, &str)> = vec![];
+  let mut numbers: Vec<(usize, &str)> = Vec::new();
 
   for (text, digit) in text_digits {
     let mut digits_numbers: Vec<(usize, &str)> = input.match_indices(digit).collect();

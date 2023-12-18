@@ -44,9 +44,9 @@ fn get_valid_game_id(input: &str) -> i32 {
 fn get_power_of_sets(input: &str) -> i32 {
   let (_, cubes) = get_cubes(input);
 
-  let mut reds: Vec<i32> = vec![];
-  let mut blues: Vec<i32> = vec![];
-  let mut greens: Vec<i32> = vec![];
+  let mut reds: Vec<i32> = Vec::new();
+  let mut blues: Vec<i32> = Vec::new();
+  let mut greens: Vec<i32> = Vec::new();
 
   for cube in cubes {
     for (amount, color) in cube {

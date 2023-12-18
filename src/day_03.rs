@@ -89,7 +89,7 @@ fn get_sum_engine_schematic(input: &str) -> i32 {
     }
   }
 
-  let mut numbers: Vec<Number> = vec![];
+  let mut numbers: Vec<Number> = Vec::new();
   let mut i = 0;
   for (pos, chr) in chars.iter() {
     if chr.is_ascii_digit() {
@@ -121,7 +121,7 @@ fn get_sum_engine_schematic(input: &str) -> i32 {
       }
 
       if is_new_number {
-        numbers.push(Number::new(vec![], chr.to_string(), is_valid));
+        numbers.push(Number::new(Vec::new(), chr.to_string(), is_valid));
       }
 
       i = pos.x;
@@ -148,9 +148,9 @@ fn get_sum_all_gear_rations(input: &str) -> i32 {
     }
   }
 
-  let mut numbers: Vec<Number> = vec![];
-  let mut all_valid_points: Vec<Vec<Point>> = vec![vec![]];
-  let mut gear_rations: Vec<i32> = vec![];
+  let mut numbers: Vec<Number> = Vec::new();
+  let mut all_valid_points: Vec<Vec<Point>> = vec![Vec::new()];
+  let mut gear_rations: Vec<i32> = Vec::new();
   let mut i = 0;
 
   for (pos, chr) in chars.iter() {
@@ -163,7 +163,7 @@ fn get_sum_all_gear_rations(input: &str) -> i32 {
           }
         };
       }
-      all_valid_points.push(vec![]);
+      all_valid_points.push(Vec::new());
     };
 
     if chr.is_ascii_digit() {
@@ -194,7 +194,7 @@ fn get_sum_all_gear_rations(input: &str) -> i32 {
     .collect::<Vec<Vec<Point>>>();
 
   for v in valid_pos {
-    let mut valid_numbers: Vec<i32> = vec![];
+    let mut valid_numbers: Vec<i32> = Vec::new();
     for p in v.iter() {
       let n = numbers
         .iter()

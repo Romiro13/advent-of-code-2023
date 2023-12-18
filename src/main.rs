@@ -38,8 +38,8 @@ fn main() -> anyhow::Result<()> {
   let rs = day_04::play(&input, &Puzzle::Part01);
   println!("Day 04 Part01 result is {}", rs);
 
-  // let rs = day_04::play(&input, &Puzzle::Part02);
-  // println!("Day 04 Part02 result is {}", rs);
+  let rs = day_04::play(&input, &Puzzle::Part02);
+  println!("Day 04 Part02 result is {}", rs);
 
   Ok(())
 }
